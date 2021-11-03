@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import './App.scss';
+import Loading from './common/Loading';
+import SearchBar from './common/SearchBar';
+import routes from './routes';
+
+const SearchContext = React.createContext({ search: '', setSearch: () => {} });
 
 function App() {
+  const [search, setSearch] = React.useState({ search: '' });
+  const searchContextValue = React.useMemo(() => {
+    return { search, setSearch };
+  }, [search, setSearch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <SearchContext.Provider value={searchContextValue}>
+        <SearchBar />
+        <Suspense fallback={Loading}>
+          <Router>
+            <Switch>
+              {routes.map((route, index) => (
+                <Route key={index} {...route} />
+              ))}
+            </Switch>
+          </Router>
+        </Suspense>
+      </SearchContext.Provider>
     </div>
   );
 }
