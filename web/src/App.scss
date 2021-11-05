@@ -1,0 +1,19 @@
+.container {
+  margin-left: 10vw;
+  margin-right: 10vw;
+  display: flex;
+}
+
+body {
+  margin: 0;
+}
+
+.row {
+  flex-direction: row;
+  display: flex;
+}
+
+.column {
+  flex-direction: column;
+  display: flex;
+}

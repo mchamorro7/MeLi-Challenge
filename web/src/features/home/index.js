@@ -4,7 +4,7 @@ const Home = () => {
   return (
     <div>
       <h1>Bienvenido al MeLi Challenge 2021</h1>
-      <h3>Empieza a buscar algo!</h3>
+      <h2>Empieza a buscar algo!</h2>
     </div>
   );
 };

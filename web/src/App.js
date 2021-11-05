@@ -1,11 +1,10 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.scss';
-import Loading from './common/Loading';
-import SearchBar from './common/SearchBar';
 import routes from './routes';
+import SearchBar from './common/SearchBar/SearchBar';
 
-const SearchContext = React.createContext({ search: '', setSearch: () => {} });
+export const SearchContext = React.createContext({ search: '', setSearch: () => {} });
 
 function App() {
   const [search, setSearch] = React.useState({ search: '' });
@@ -16,9 +15,9 @@ function App() {
   return (
     <div>
       <SearchContext.Provider value={searchContextValue}>
-        <SearchBar />
-        <Suspense fallback={Loading}>
+        <Suspense fallback={<p>Loading...</p>}>
           <Router>
+            <SearchBar />
             <Switch>
               {routes.map((route, index) => (
                 <Route key={index} {...route} />
