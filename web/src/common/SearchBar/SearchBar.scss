@@ -32,7 +32,17 @@
                 cursor: pointer;
                 padding: 10px;
                 outline: none;
+                display: flex;
             }
         }
+    }
+}
+
+@media (max-width: 768px) {
+    .logo {
+        margin-right: 10px !important;
+    }
+    .container.row {
+        padding: 10px !important;
     }
 }

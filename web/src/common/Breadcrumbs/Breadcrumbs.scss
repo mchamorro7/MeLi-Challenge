@@ -1,0 +1,12 @@
+@import "../../colors";
+
+.breadcrumb-wrapper {
+    padding: 0;
+    .breadcrumb-container {
+        margin: 16px 0;
+        .breadcrumb-label {
+            font-size: 14px;
+            color: $grey-light;
+        }
+    }
+}

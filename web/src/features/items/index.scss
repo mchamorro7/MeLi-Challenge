@@ -1,0 +1,12 @@
+@import "../../colors";
+
+.results {
+    background: $white;
+}
+
+@media (min-width: 768px) {
+    .results {
+        background: $white;
+        padding: 0 16px;
+    } 
+}

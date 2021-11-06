@@ -1,13 +1,15 @@
 import React from 'react';
-import { useHistory } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
 import logo from '../../assets/img/Logo_ML.png';
 import searchIcon from '../../assets/img/ic_Search.png';
-import { SearchContext } from '../../App';
 import './SearchBar.scss';
+import { Link } from 'react-router-dom';
 
 const SearchBar = () => {
-  const [searchValue, setSearchValue] = React.useState('');
-  const { setSearch } = React.useContext(SearchContext);
+  const { search } = useLocation();
+  const params = new URLSearchParams(search);
+  const value = params.get('search');
+  const [searchValue, setSearchValue] = React.useState(value);
   const history = useHistory();
 
   const handleChange = ({ target: { value } }) => {
@@ -15,9 +17,8 @@ const SearchBar = () => {
   };
 
   const submitSearch = () => {
-    setSearch(searchValue);
     history.push({
-      pathname: '/blogs',
+      pathname: '/items',
       search: `?search=${searchValue}`,
     });
   };
@@ -31,7 +32,9 @@ const SearchBar = () => {
   return (
     <div className="searchbar-container">
       <div className="container row">
-        <img className="logo" src={logo} alt="Mercado libre" />
+        <Link to="/">
+          <img className="logo" src={logo} alt="Mercado libre" />
+        </Link>
         <div className="searchbar-input-container">
           <input
             className="searchbar-input"
