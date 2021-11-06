@@ -1,0 +1,48 @@
+@import "../../colors";
+
+.searchbar-container {
+    width: 100%;
+    background-color: $yellow;
+    .container.row {
+        padding: 10px 0;
+        align-items: center;
+        .logo {
+            margin-right: 24px;
+            cursor: pointer;
+        }
+        .searchbar-input-container {
+            width: 100%;
+            display: flex;
+            .searchbar-input {
+                text-decoration: none;
+                border: none;
+                background: color("white");
+                flex-basis: 100%;
+                padding: 10px 0 10px 20px;
+                font-size: 18px;
+                color: $grey-medium;
+                outline: none;
+            }
+            .searchbar-button {
+                align-items: center;
+                justify-content: center;
+                text-decoration: none;
+                border: none;
+                background: $background;
+                cursor: pointer;
+                padding: 10px;
+                outline: none;
+                display: flex;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .logo {
+        margin-right: 10px !important;
+    }
+    .container.row {
+        padding: 10px !important;
+    }
+}

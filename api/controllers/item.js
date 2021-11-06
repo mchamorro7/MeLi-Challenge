@@ -1,4 +1,4 @@
-const apiClient = require('../client');
+const apiClient = require('../api');
 const { ItemsResponse, ItemResponse } = require('../models/Response');
 
 var itemController = {
@@ -13,13 +13,16 @@ var itemController = {
       .catch(error => res.status(404).send({ error }));
   },
   getItems: function ({ query }, res) {
+    const { q } = query;
     return apiClient
-      .get('/sites/MLA/search', { params: { q: query.search } })
-      .then(({ data: { results, filters } }) => {
-        const { values: filterValue } = filters.find(filter => filter.id === 'category');
-        const categoriesFromSearch = filterValue[0].path_from_root || [];
+      .get('/sites/MLA/search', { params: { q } })
+      .then(({ data }) => {
+        const { results, filters} = data;
+        const filterValue = filters.find(filter => filter.name === 'Categorías');
+        const categoriesFromSearch = (filterValue || {}).values ? filterValue.values[0].path_from_root : [];
         const parsedCategories = categoriesFromSearch.map(cat => cat.name);
-        const response = Object.assign(new ItemsResponse(parsedCategories, results), {});
+        let response = Object.assign(new ItemsResponse(parsedCategories, results), {});
+        response.items = response.items.slice(0,4);
         res.status(200).send(response);
       })
       .catch(error => res.status(404).send({ error }));

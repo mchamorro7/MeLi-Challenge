@@ -1,0 +1,91 @@
+@import "../../../colors";
+
+.list-item-container {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    border-bottom: 1px solid $background;
+    margin-bottom: 10px;
+    color: $grey-dark;
+    .list-item-image {
+        height: auto;
+        min-height: 180px;
+        width: 100%;
+        border-radius: 4px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 50%;
+    }
+    .list-item-content {
+        margin-bottom: 10px;
+        .list-item-header {
+            flex-direction: row;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 24px 0;
+            .list-item-price {
+                flex-direction: row;
+                display: flex;
+                align-items: center;
+                .free-shipping-icon {
+                    padding-left: 10px;
+                    height: 20px;
+                    width: 20px;
+                    margin: 0;
+                }
+                p {
+                    font-size: 24px;
+                }
+            }
+            .list-item-location p {
+                font-size: 12px;
+                color: $grey-medium;
+            }
+        }
+        .list-item-title {
+            p {
+                font-size: 18px;
+            }
+        }
+    }
+}
+.list-item-container:nth-child(4) {
+    border: none !important;
+    margin-bottom: 0;
+}
+.list-item-container:hover {
+    opacity: 0.5;
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+    .list-item-container .list-item-image {
+        min-height: 260px;
+        background-size: 25%;
+    }
+}
+
+@media (min-width: 768px) {
+    .list-item-container {
+        flex-direction: row;
+        margin-bottom: 0;
+        flex-basis: 100%;
+        .list-item-image {
+            height: 180px;
+            width: 180px;
+            margin: 16px 16px 16px 0;
+            background-size: 100%;
+        }
+        .list-item-content {
+            display: flex;
+            flex-direction: column;
+            flex-basis: 100%;
+            .list-item-header {
+                margin-bottom: 32px;
+            }
+            .list-item-title {
+                width: 40%;
+            }
+        }
+    }
+}

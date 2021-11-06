@@ -1,0 +1,42 @@
+@import './colors';
+
+.container {
+  display: flex;
+  padding: 10px;
+}
+
+body {
+  margin: 0;
+  background: $background;
+}
+
+.row {
+  flex-direction: row;
+  display: flex;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.column {
+  flex-direction: column;
+  display: flex;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.link-wrapper {
+  text-decoration: none;
+  color: $black;
+}
+
+@media (min-width: 768px) {
+  .container {
+    margin-left: 10vw;
+    margin-right: 10vw;
+    display: flex;
+  }
+}

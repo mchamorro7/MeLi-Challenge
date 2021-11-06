@@ -43,12 +43,14 @@ class PartialItem {
   picture;
   condition;
   free_shipping;
+  address;
   constructor(item) {
-    const { id, title, currency_id, price, thumbnail, condition, shipping } = item;
+    const { id, title, currency_id, price, thumbnail, condition, shipping, address } = item;
     this.id = id;
     this.title = title;
     this.picture = thumbnail;
     this.condition = condition;
+    this.address = address.state_name,
     this.free_shipping = shipping.free_shipping;
     this.price = new Price(currency_id, price);
   }
