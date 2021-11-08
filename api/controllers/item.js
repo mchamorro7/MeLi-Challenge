@@ -6,9 +6,14 @@ var itemController = {
     if (!params.id) return res.status(404).send({ message: 'You must provide a item id' });
     return Promise.all([apiClient.get(`/items/${params.id}`), apiClient.get(`/items/${params.id}/description`)])
       .then(([{ data: itemData }, { data: descriptionData }]) => {
-        const plainText = descriptionData.plain_text;
-        const response = Object.assign(new ItemResponse({ ...itemData, ...{ description: plainText } }), {});
-        res.status(200).send(response);
+        return apiClient.get(`/categories/${itemData.category_id}`)
+        .then(({data: categoryData}) => {
+          const categories = categoryData.path_from_root;
+          const parsedCategories = categories.map(cat => cat.name);
+          const plainText = descriptionData.plain_text;
+          const response = Object.assign(new ItemResponse({ ...itemData, ...{ description: plainText, categories: parsedCategories } }), {});
+          res.status(200).send(response);
+        }).catch(error => res.status(404).send({ error }));
       })
       .catch(error => res.status(404).send({ error }));
   },

@@ -18,17 +18,24 @@ class Price {
   }
 }
 
+const conditionType = {
+  new: 'Nuevo',
+  not_specified: 'No especificado',
+  used: 'Usado',
+}
+
 class ItemResponse extends Response {
   item;
   constructor(data) {
     super();
-    const { id, title, currency_id, thumbnail, price, pictures, condition, shipping, sold_quantity, description } = data;
+    const { id, title, currency_id, thumbnail, price, pictures, condition, shipping, sold_quantity, description, categories } = data;
     this.item = {
       id,
       title,
+      categories,
       price: new Price(currency_id, price),
-      ...(pictures[0] ? { pictures: pictures[0].url } : { pictures: thumbnail }),
-      condition,
+      ...(pictures[0] ? { picture: pictures[0].url } : { picture: thumbnail }),
+      condition: conditionType[condition],
       free_shipping: shipping.free_shipping,
       sold_quantity,
       description,
@@ -49,7 +56,7 @@ class PartialItem {
     this.id = id;
     this.title = title;
     this.picture = thumbnail;
-    this.condition = condition;
+    this.condition = conditionType[condition];
     this.address = address.state_name,
     this.free_shipping = shipping.free_shipping;
     this.price = new Price(currency_id, price);
