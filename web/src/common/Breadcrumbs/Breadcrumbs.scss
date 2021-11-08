@@ -1,0 +1,21 @@
+@import "../../colors";
+
+.breadcrumb-wrapper {
+    padding: 0;
+    margin: 0 10px;
+    .breadcrumb-container {
+        margin: 16px 0;
+        .breadcrumb-label {
+            font-size: 14px;
+            color: $grey-medium;
+            margin-right: 5px;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .breadcrumb-wrapper {
+        margin-left: 10vw;
+        margin-right: 10vw;
+    }
+}

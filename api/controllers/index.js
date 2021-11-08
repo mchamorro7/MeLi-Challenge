@@ -1,9 +1,4 @@
-var controller = {
-    test: function (req, res) {
-        return res.status(200).send({
-            message: 'Hello World!'
-        });
-    },
-};
+const itemController = require('./item');
 
-module.exports = controller;
+// Here you can import different controllers to be used at the different routes.
+module.exports = { itemController };

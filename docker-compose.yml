@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  web:
+    container_name: web
+    image: node:12-alpine
+    working_dir: /usr/src/app/web
+    volumes:
+      - ./web:/usr/src/app/web
+    ports:
+      - 3000:3000
+    links:
+      - api
+    networks:
+      - app-network
+    command: sh -c "npm rebuild node-sass && npm run start"
+  api:
+    container_name: api
+    image: node:12-alpine
+    working_dir: /usr/src/app/api
+    volumes:
+      - ./api:/usr/src/app/api
+    ports:
+      - 3002:3002
+    networks:
+      - app-network
+    command: npm run start
+networks:
+  app-network:
+    driver: bridge

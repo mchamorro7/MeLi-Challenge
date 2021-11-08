@@ -1,0 +1,19 @@
+@import "../../colors";
+
+.results {
+    background: $white;
+    margin: 0 10px 10px 10px;
+}
+
+@media (min-width: 768px) {
+    .results {
+        padding: 0 16px;
+        margin: 0 10vw 10vw 10vw;
+        :nth-child(4n) {
+            .list-item-container {
+                border: none !important;
+                margin-bottom: 0;
+            }
+        }
+    } 
+}
