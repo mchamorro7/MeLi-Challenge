@@ -1,7 +1,7 @@
 import React from 'react';
 
 const itemsComponent = React.lazy(() => import('./features/items'));
-const itemComponent = React.lazy(() => import('./features/items/Detail'));
+const itemComponent = React.lazy(() => import('./features/items/Detail/Detail'));
 const homeComponent = React.lazy(() => import('./features/home'));
 const notFoundComponent = React.lazy(() => import('./common/NotFound'));
 

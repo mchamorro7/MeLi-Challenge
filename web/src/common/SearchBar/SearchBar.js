@@ -1,15 +1,15 @@
 import React from 'react';
 import { useHistory, useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
 import logo from '../../assets/img/Logo_ML.png';
 import searchIcon from '../../assets/img/ic_Search.png';
 import './SearchBar.scss';
-import { Link } from 'react-router-dom';
 
 const SearchBar = () => {
   const { search } = useLocation();
   const params = new URLSearchParams(search);
   const value = params.get('search');
-  const [searchValue, setSearchValue] = React.useState(value);
+  const [searchValue, setSearchValue] = React.useState(value ?? '');
   const history = useHistory();
 
   const handleChange = ({ target: { value } }) => {

@@ -19,7 +19,6 @@ const Results = () => {
         setLoading(true);
         const { data } = await apiItems.getItems(searchValue);
         setData(data);
-        console.log(data);
       } catch (error) {
         console.log('getItems#Results', error);
       } finally {

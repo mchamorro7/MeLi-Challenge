@@ -1,7 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './ListItem.scss';
 import freeShippingIcon from '../../../assets/img/ic_shipping@2x.png.png';
-import { Link } from 'react-router-dom';
 
 const ListItem = ({ title, price, picture, id, free_shipping, address }) => {
   return (
@@ -11,7 +11,9 @@ const ListItem = ({ title, price, picture, id, free_shipping, address }) => {
         <div className="list-item-content">
           <div className="list-item-header">
             <div className="list-item-price">
-              <p className="m-0">$ {price.amount}</p>
+              <p className="m-0">
+                {price.currency} {price.amount}
+              </p>
               {free_shipping && <img className="free-shipping-icon" src={freeShippingIcon} alt="Envio gratis" />}
             </div>
             <div className="list-item-location">
